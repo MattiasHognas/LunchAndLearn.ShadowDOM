@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Lunch And Learn - Shadow DOM</title>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js" type="text/javascript"></script>
+        <link href="styles2.css" type="text/css" rel="stylesheet" />
+        </head>
+    <body>
+        <ul class="stories">
+            <li><a href="//example.com/stories/1">A story</a></li>
+            <li><a href="//example.com/stories/2">Another story</a></li>
+            <li class="not-so-breaking"><a href="//example.com/stories/3">Boring story</a></li>
+            <li class="breaking"><a href="//example.com/stories/3">Also a story</a></li>
+            <li><a href="//example.com/stories/4">Yet another story</a></li>
+            <li><a href="//example.com/stories/4">Awesome story</a></li>
+            <li class="not-so-breaking"><a href="//example.com/stories/3">Also a boring story</a></li>
+            <li class="breaking"><a href="//example.com/stories/5">Horrible story</a></li>
+        </ul>
+        <script type="text/javascript">
+            var groupify = function (className, contentSelector) {
+                var group = document.createElement('div');
+                group.className = className;
+                group.innerHTML = '<ul><content select="' + contentSelector + '"></content></ul>';
+                return group;
+            };
+            var shadowify = function (list) {
+                var root = list.webkitCreateShadowRoot();
+                root.applyAuthorStyles = true;
+                root.appendChild(groupify('breaking', '.breaking'));
+                root.appendChild(groupify('not-so-breaking', '.not-so-breaking'));
+                root.appendChild(groupify('other', ''));
+            };
+            $(function () {
+                [].forEach.call(document.querySelectorAll('ul.stories'), shadowify);
+            });
+        </script>
+    </body>
+</html>

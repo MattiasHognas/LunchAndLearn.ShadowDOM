@@ -1,0 +1,23 @@
+﻿ul {
+    list-style: none;
+    padding: 0;
+}
+div {
+    padding: 1em;
+    margin: 0 0 1em;
+}
+div.breaking {
+    color: red;
+    font-size: 1.5em;
+    border: 1px dashed red;
+}
+div.breaking:before {
+    content: 'Breaking:';
+    display: block;
+}
+div.not-so-breaking {
+    border: 1px dotted green;
+}
+div.other {
+    border: 1px solid blue;
+}
